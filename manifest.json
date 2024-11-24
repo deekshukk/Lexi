@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
-    "name": "Simple Extension",
+    "name": "Document Summarizer Extension",
     "version": "1.0",
-    "description": "A simple Chrome extension",
+    "description": "Used to summarize and translate documents",
     "action": {
       "default_popup": "popup.html"
     }
