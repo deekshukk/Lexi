@@ -1,22 +1,33 @@
 body {
-    font-family: Arial, sans-serif;
-    padding: 10px;
-  }
-  
-  textarea {
-    width: 100%;
-    height: 100px;
-    margin-bottom: 10px;
-  }
-  
-  button {
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  
-  #output {
-    margin-top: 10px;
-    font-weight: bold;
-  }
-  
+  font-family: Arial, sans-serif;
+  padding: 10px;
+  width: 300px;  /* Define a fixed width */
+  max-height: 600px; /* Maximum height before scrolling */
+  overflow: auto;  /* Enables scrolling */
+}
+
+textarea {
+  width: 100%;
+  height: 100px;
+  margin-bottom: 10px;
+  box-sizing: border-box; /* Ensures padding and borders are included in the width */
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  display: block; /* Ensures the button doesn't flow inline with other elements */
+  width: 100%;  /* Makes the button extend full width */
+  box-sizing: border-box; /* Consistent sizing with padding included */
+}
+
+#output {
+  margin-top: 10px;
+  font-weight: bold;
+  padding: 5px;
+  border: 1px solid #ccc; /* Adds a border around the output for clarity */
+  height: auto;  /* Height will grow with content */
+  max-height: 300px; /* Limit the height with a scrollbar */
+  overflow: auto; /* Add scrollbar when content overflows */
+}

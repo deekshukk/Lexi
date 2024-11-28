@@ -3,12 +3,14 @@
 <head>
   <title>Document Summarizer</title>
   <link rel="stylesheet" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
 </head>
 <body>
   <h1>Document Summarizer</h1>
-  <textarea id="textInput" placeholder="Enter some text..."></textarea>
-  <button id="processBtn">Process</button>
-  <div id="output"></div>
+  <input type="file" id="pdfInput" accept=".pdf">
+  <button id="uploadBtn">Upload PDF</button>
+  <div id="textOutput" style="white-space: pre-wrap;"></div>
   <script src="popup.js"></script>
+  <script src="/lib/pdf.min.js"></script>
 </body>
 </html>
