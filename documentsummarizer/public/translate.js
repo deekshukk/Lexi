@@ -12,6 +12,7 @@ export async function detectLanguage(text) {
   
       if (canDetect !== 'no') {
         if (canDetect === 'readily') {
+          
           detector = await translation.createDetector(); // Create the detector immediately
         } else {
           detector = await translation.createDetector(); // Wait for the model download if necessary
