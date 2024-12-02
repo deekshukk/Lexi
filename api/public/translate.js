@@ -1,10 +1,4 @@
-// translation.js
 
-/**
- * Function to detect the language of a given text.
- * @param {string} text - The text to detect the language of.
- * @returns {Promise<string>} - The detected language code (e.g., 'en', 'de', 'fr').
- */
 export async function detectLanguage(text) {
     try {
       const canDetect = await translation.canDetect();

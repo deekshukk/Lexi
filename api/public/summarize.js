@@ -1,10 +1,4 @@
-// summarize.js
 
-/**
- * Function to summarize text using Gemini Nano Summarization API.
- * @param {string} text - The text to summarize.
- * @returns {Promise<string>} - The summarized text.
- */
 export async function summarizeText(text) {
     try {
       const canSummarize = await ai.summarizer.capabilities();
