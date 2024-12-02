@@ -1,16 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document Summarizer</title>
   <link rel="stylesheet" href="styles.css">
-  <script src="/lib/pdf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
 </head>
 <body>
   <h1>Document Summarizer</h1>
   <input type="file" id="pdfInput" accept=".pdf">
   <button id="uploadBtn">Upload PDF</button>
   <div id="textOutput" style="white-space: pre-wrap;"></div>
-  
+  <h1>SUMMARY</h1>
+  <div id="summarizedOutput" style="white-space: pre-wrap;"></div>
+
   <script src="popup.js"></script>
+  <script src="/lib/pdf.min.js"></script>
 </body>
 </html>
