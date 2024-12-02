@@ -22,6 +22,33 @@ document.addEventListener('DOMContentLoaded', function() {
       summarizer.destroy();
       return result;
     }
+  
+    // Translate text function
+    async function translateText(text, sourceLanguage, targetLanguage) {
+      const languagePair = { sourceLanguage, targetLanguage };
+      const canTranslate = await translation.canTranslate(languagePair);
+
+      if (canTranslate === 'no') {
+        console.error(`Translation not available for ${sourceLanguage} to ${targetLanguage}.`);
+        return `Translation not available for ${sourceLanguage} to ${targetLanguage}.`;
+      }
+
+      let translator;
+      if (canTranslate === 'readily') {
+        translator = await translation.createTranslator(languagePair);
+      } 
+      else {
+        translator = await translation.createTranslator(languagePair);
+        translator.addEventListener('downloadprogress', (e) => {
+          console.log(`Model download progress: ${e.loaded} of ${e.total}`);
+        });
+      await translator.ready;
+      }
+
+      const translatedText = await translator.translate(text);
+      translator.destroy();
+      return translatedText;
+    }
 
   document.getElementById('uploadBtn').addEventListener('click', function() {
     const fileInput = document.getElementById('pdfInput');
@@ -75,4 +102,24 @@ document.addEventListener('DOMContentLoaded', function() {
       alert('Please upload a valid PDF file.');
     }
   });
+
+  // Handle translation
+  document.getElementById('translateBtn').addEventListener('click', async function () {
+    const summaryText = document.getElementById('summarizedOutput').textContent.trim();
+    const targetLanguage = document.getElementById('languageSelect').value;
+
+    if (!summaryText) {
+      alert('Please summarize the text first.');
+      return;
+    }
+
+    try {
+      const translatedText = await translateText(summaryText, 'en', targetLanguage);
+      document.getElementById('translatedOutput').textContent = translatedText;
+    } catch (error) {
+      console.error('Translation error:', error);
+      alert('Error during translation. Please try again.');
+    }
+  });
 });
+
