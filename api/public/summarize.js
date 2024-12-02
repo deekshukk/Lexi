@@ -8,7 +8,7 @@
 export async function summarizeText(text) {
     try {
       const canSummarize = await ai.summarizer.capabilities();
-      let summarizer;
+      let summarizer = '';
   
       if (canSummarize && canSummarize.available !== 'no') {
         if (canSummarize.available === 'readily') {

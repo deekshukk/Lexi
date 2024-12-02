@@ -1,43 +1,5 @@
-document.addEventListener('DOMContentLoaded', initialize);
-
-function initialize() {
-  document.getElementById('uploadBtn').addEventListener('click', handleFileUpload);
-}
-
-function handleFileUpload() {
-  const fileInput = document.getElementById('pdfInput');
-  const file = fileInput.files[0];
-
-  if (file && file.type === 'application/pdf') {
-    processPDF(file);
-  } else {
-    alert('Upload a PDF cutie');
-  }
-}
-
-async function processPDF(file) {
-  const fileReader = new FileReader();
-  
-  fileReader.onload = async function () {
-    const typedarray = new Uint8Array(this.result);
-    try {
-      const pdf = await pdfjsLib.getDocument(typedarray).promise;
-      const fullText
-
-
-
-
-
-You said:
-can u add console logs cause idk if the uplaod button is working?
-ChatGPT said:
-ChatGPT
-Certainly! Here's your updated code with added console.log statements to help you debug the behavior of the upload button and the processing steps:
-
-javascript
-Copy code
-import { summarizeText } from './summarize.js';
-import { detectLanguage, translateText } from './translation.js';
+import { summarizeText } from 'api/summarize.js';
+// import { detectLanguage, translateText } from 'api/translation.js';
 
 document.addEventListener('DOMContentLoaded', function () {
   document.getElementById('uploadBtn').addEventListener('click', function () {
@@ -74,18 +36,18 @@ document.addEventListener('DOMContentLoaded', function () {
             }
           }
 
-          console.log('PDF text extraction complete.');
-          document.getElementById('textOutput').textContent = 'Detecting language...';
+          // console.log('PDF text extraction complete.');
+          // document.getElementById('textOutput').textContent = 'Detecting language...';
 
           try {
-            const detectedLanguage = await detectLanguage(fullText);
-            console.log("Detected Language:", detectedLanguage);
+            // const detectedLanguage = await detectLanguage(fullText);
+            // console.log("Detected Language:", detectedLanguage);
 
-            if (detectedLanguage !== 'en') {
-              document.getElementById('textOutput').textContent = 'Translating to English...';
-              fullText = await translateText(fullText, 'en');
-              console.log('Translation to English complete.');
-            }
+            // if (detectedLanguage !== 'en') {
+            //   document.getElementById('textOutput').textContent = 'Translating to English...';
+            //   fullText = await translateText(fullText, 'en');
+            //   console.log('Translation to English complete.');
+            // }
 
             document.getElementById('textOutput').textContent = 'Summarizing...';
             const summary = await summarizeText(fullText);
