@@ -1,34 +1,27 @@
 document.addEventListener('DOMContentLoaded', function() {
   // Summarize text function
-  async function summarizeText(text) {
-    try {
-      // Check if the summarizer service is available (assuming you have some summarizer logic here)
+    async function summarizeText(text) {
       const canSummarize = await ai.summarizer.capabilities();
-      let summarizer = '';
-
-      if (canSummarize && canSummarize.available !== 'no') {
-        if (canSummarize.available === 'readily') {
-          summarizer = await ai.summarizer.create();
-        } else {
-          summarizer = await ai.summarizer.create();
-          summarizer.addEventListener('downloadprogress', (e) => {
-            console.log(`Download Progress: ${e.loaded} of ${e.total}`);
-          });
-          await summarizer.ready;
-        }
-
-        // Perform the summarization
-        const result = await summarizer.summarize(text);
-        summarizer.destroy();
-        return result;
-      } else {
-        throw new Error('Summarizer is not available at the moment.');
+      
+      if (!canSummarize || canSummarize.available === 'no') {
+        console.error('Summarizer is not available at the moment.');
+        return 'Summarizer is not available.';
       }
-    } catch (error) {
-      console.error("Error in summarization:", error);
-      throw new Error('An error occurred while summarizing the text.');
+    
+      let summarizer;
+      summarizer = await ai.summarizer.create();
+    
+      if (canSummarize.available !== 'readily') {
+        summarizer.addEventListener('downloadprogress', (e) => {
+          console.log(`Download Progress: ${e.loaded} of ${e.total}`);
+        });
+        await summarizer.ready;
+      }
+    
+      const result = await summarizer.summarize(text);
+      summarizer.destroy();
+      return result;
     }
-  }
 
   document.getElementById('uploadBtn').addEventListener('click', function() {
     const fileInput = document.getElementById('pdfInput');
@@ -55,27 +48,21 @@ document.addEventListener('DOMContentLoaded', function() {
               fullText += pageText + '\n\n';
             }
 
-            // Display the full text in the "textOutput" div
             document.getElementById('textOutput').textContent = fullText;
 
-            // Debug: Log the full text
             console.log("Full Text extracted from PDF:", fullText);
 
             // Check if the fullText is valid and not empty
-            if (fullText.trim().length === 0) {
-              alert("No text found in the PDF.");
-              return;
-            }
+            // if (fullText.trim().length === 0) {
+            //   alert("No text found in the PDF.");
+            //   return;
+            // }
 
             // Summarize the extracted full text
-            try {
-              const summary = await summarizeText(fullText);
-              console.log("Summarized Text:", summary); // Log the summarized result
-              document.getElementById('summarizedOutput').textContent = summary;
-            } catch (error) {
-              console.error("Error in summarization:", error);
-              alert("There was an error summarizing the text.");
-            }
+            const summary = await summarizeText(fullText);
+            console.log("Summarized Text:", summary); // Log the summarized result
+            document.getElementById('summarizedOutput').textContent = summary;
+          
           })();
         }).catch(error => {
           console.error("Error loading PDF:", error);

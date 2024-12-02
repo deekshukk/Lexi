@@ -1,4 +1,3 @@
-
 export async function detectLanguage(text) {
     try {
       const canDetect = await translation.canDetect();
