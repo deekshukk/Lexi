@@ -50,6 +50,31 @@ document.addEventListener('DOMContentLoaded', function() {
       return translatedText;
     }
 
+    // Function to identify risks and return full sentences
+  function identifyRisks(text) {
+    const riskKeywords = [
+      'penalty', 'liability', 'termination', 'fees', 
+      'risk', 'compliance', 'breach', 'fine', 'responsibility'
+    ];
+    const sentences = text.match(/[^.!?]+[.!?]/g) || []; // Split text into sentences
+    const risks = [];
+
+    // Check each sentence for keywords
+    sentences.forEach(sentence => {
+      riskKeywords.forEach(keyword => {
+        if (sentence.toLowerCase().includes(keyword)) {
+          risks.push(sentence.trim());
+        } 
+      });
+    });
+
+    if (risks.length === 0) {
+      return 'No risks identified in the document.';
+    }
+
+    return `Identified Risks:\n${risks.join('\n')}`;
+  } 
+
   document.getElementById('uploadBtn').addEventListener('click', function() {
     const fileInput = document.getElementById('pdfInput');
     const file = fileInput.files[0];
@@ -90,6 +115,11 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log("Summarized Text:", summary); // Log the summarized result
             document.getElementById('summarizedOutput').textContent = summary;
           
+            // Identify risks in the extracted text
+            const risks = identifyRisks(fullText);
+            console.log("Identified Risks:", risks); // Log identified risks
+            document.getElementById('risksOutput').textContent = risks;
+
           })();
         }).catch(error => {
           console.error("Error loading PDF:", error);
@@ -116,10 +146,13 @@ document.addEventListener('DOMContentLoaded', function() {
     try {
       const translatedText = await translateText(summaryText, 'en', targetLanguage);
       document.getElementById('translatedOutput').textContent = translatedText;
+      // Translate risks
+      const risksText = document.getElementById('risksOutput').textContent.trim();
+      const translatedRisks = await translateText(risksText, 'en', targetLanguage);
+      document.getElementById('translatedRisksOutput').textContent = translatedRisks;
     } catch (error) {
       console.error('Translation error:', error);
       alert('Error during translation. Please try again.');
     }
   });
 });
-
