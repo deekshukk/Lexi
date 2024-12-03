@@ -1,5 +1,5 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: Inter, sans-serif;
   padding: 10px;
   width: 300px;  /* Define a fixed width */
   max-height: 600px; /* Maximum height before scrolling */
@@ -30,4 +30,95 @@ button {
   height: auto;  /* Height will grow with content */
   max-height: 300px; /* Limit the height with a scrollbar */
   overflow: auto; /* Add scrollbar when content overflows */
+}
+
+.introBlock {
+  background-color: #f0f0f0; 
+  border-radius: 20px; 
+  padding: 16px 24px; 
+  display: block; 
+  width: 100%; 
+  box-sizing: border-box; 
+  margin-bottom: 16px; 
+}
+
+.scanalyticsTitle {
+  text-align: center;
+  padding-top: 15px;
+  font-size: 32px;
+}
+
+.button-container {
+  padding-top: 10px;
+  padding-bottom: 30px;
+  display: flex; 
+  justify-content: center; 
+}
+
+.gradient-button {
+  background: linear-gradient(45deg, #870000, #E20303); 
+  color: white; 
+  font-size: 14px; 
+  padding: 10px 8px; 
+  border: none; 
+  border-radius: 24px; 
+  cursor: pointer; 
+  width: 160px; 
+  text-align: center; 
+}
+
+.generatedContent{
+  font-size: 12px;
+  color: #5D5D5D;
+  text-align: left;
+  font-weight: 200;
+  line-height: 1.3;
+  padding-bottom: 15px;
+  padding-top: 0px;
+  padding-left: 10px;
+  padding-right: 10px;
+
+}
+
+.translateBlock {
+  display: flex; 
+  background-color: #f0f0f0; 
+  border-radius: 20px; 
+  padding: 5px 15px;
+  width: 90%;
+  margin: 20px auto;
+  height: 60px; 
+}
+
+.language-dropdown {
+  border: none;
+  background: none;
+  font-size: 16px; 
+  color: #5D5D5D; 
+  outline: none;
+  appearance: none; 
+  padding: 5px;
+  text-align: left; 
+  text-decoration: underline;
+  cursor: pointer; 
+}
+
+.divider {
+  width: 1px;
+  height: 50%; 
+  background-color: #999; 
+  margin: 0 15px;
+}
+
+.translate-button {
+  flex: 0 0 55%; 
+  background: linear-gradient(45deg, #870000, #E20303);
+  color: white; 
+  font-size: 16px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 20px; 
+  cursor: pointer;
+  text-align: center;
+  transition: transform 0.2s ease-in-out; 
 }
