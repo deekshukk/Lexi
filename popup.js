@@ -1,4 +1,14 @@
 document.addEventListener('DOMContentLoaded', function() {
+
+  // Loading spinner functions
+  function showLoadingSpinner() {
+    document.getElementById('loadingSpinner').style.display = 'block';
+  }
+
+  function hideLoadingSpinner() {
+    document.getElementById('loadingSpinner').style.display = 'none';
+  }
+
   // Summarize text function
     async function summarizeText(text) {
       const canSummarize = await ai.summarizer.capabilities();
@@ -83,6 +93,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if (file && file.type === 'application/pdf') {
       const fileReader = new FileReader();
 
+      showLoadingSpinner();
+
       fileReader.onload = function() {
         const typedarray = new Uint8Array(this.result);
 
@@ -119,17 +131,27 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('summaryBlock').style.display = 'block';
           
             // Identify risks in the extracted text
+            try {
             const risks = identifyRisks(fullText);
             console.log("Identified Risks:", risks); // Log identified risks
             document.getElementById('risksOutput').textContent = risks;
 
             document.getElementById('riskBlock').style.display = 'block';
+            }
+            catch (error) {
+              console.error("Error processing PDF:", error);
+              alert("There was an error processing the PDF. Please try again.");
+            } finally {
+              hideLoadingSpinner(); // Ensure spinner is hidden after processing
+            }
 
           })();
         }).catch(error => {
           console.error("Error loading PDF:", error);
           alert("There was an error loading the PDF.");
-        });
+        } 
+        );
+        
       };
 
       fileReader.readAsArrayBuffer(file);
