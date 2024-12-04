@@ -137,6 +137,9 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('risksOutput').textContent = risks;
 
             document.getElementById('riskBlock').style.display = 'block';
+
+            document.getElementById('langBlock').style.display = 'flex';
+            document.getElementById('langBlock').classList.add('show');
             }
             catch (error) {
               console.error("Error processing PDF:", error);

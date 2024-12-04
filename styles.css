@@ -168,3 +168,11 @@ button {
     transform: rotate(360deg);
   }
 }
+
+.translateBlock {
+  display: none; 
+}
+
+.translateBlock.show {
+  display: block;
+}
