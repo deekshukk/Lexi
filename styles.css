@@ -82,6 +82,8 @@ button {
 
 .translateBlock {
   display: flex; 
+  justify-content: space-evenly;
+  align-items: center;
   background-color: #f0f0f0; 
   border-radius: 20px; 
   padding: 5px 15px;
@@ -93,7 +95,7 @@ button {
 .language-dropdown {
   border: none;
   background: none;
-  font-size: 16px; 
+  font-size: 14px; 
   color: #5D5D5D; 
   outline: none;
   appearance: none; 
@@ -107,17 +109,16 @@ button {
   width: 1px;
   height: 50%; 
   background-color: #999; 
-  margin: 0 15px;
+  margin-right: 25px;
 }
 
 .translate-button {
-  flex: 0 0 55%; 
   background: linear-gradient(45deg, #870000, #E20303);
   color: white; 
-  font-size: 16px;
-  padding: 10px 15px;
+  font-size: 14px;
+  padding: 10px 8px; 
   border: none;
-  border-radius: 20px; 
+  border-radius: 26px; 
   cursor: pointer;
   text-align: center;
   transition: transform 0.2s ease-in-out; 
