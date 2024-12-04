@@ -26,6 +26,7 @@ button {
   margin-top: 10px;
   font-weight: bold;
   padding: 5px;
+  padding-bottom: 20px;
   border: 1px solid #ccc; /* Adds a border around the output for clarity */
   height: auto;  /* Height will grow with content */
   max-height: 300px; /* Limit the height with a scrollbar */
@@ -106,7 +107,6 @@ button {
   color: #5D5D5D; 
   outline: none;
   appearance: none; 
-  padding: 5px;
   text-align: left; 
   text-decoration: underline;
   cursor: pointer; 
