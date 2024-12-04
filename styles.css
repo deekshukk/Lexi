@@ -47,6 +47,7 @@ button {
   text-align: center;
   padding-top: 15px;
   font-size: 32px;
+  font-style: italic;
 }
 
 .button-container {
@@ -73,6 +74,8 @@ button {
   color: #5D5D5D; 
   outline: none;
   text-decoration: underline;
+  display: inline-block;
+  text-align: center;
 }
 
 .generatedContent{
