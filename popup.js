@@ -114,11 +114,15 @@ document.addEventListener('DOMContentLoaded', function() {
             const summary = await summarizeText(fullText);
             console.log("Summarized Text:", summary); // Log the summarized result
             document.getElementById('summarizedOutput').textContent = summary;
+
+            document.getElementById('summaryBlock').style.display = 'block';
           
             // Identify risks in the extracted text
             const risks = identifyRisks(fullText);
             console.log("Identified Risks:", risks); // Log identified risks
             document.getElementById('risksOutput').textContent = risks;
+
+            document.getElementById('riskBlock').style.display = 'block';
 
           })();
         }).catch(error => {
@@ -150,6 +154,9 @@ document.addEventListener('DOMContentLoaded', function() {
       const risksText = document.getElementById('risksOutput').textContent.trim();
       const translatedRisks = await translateText(risksText, 'en', targetLanguage);
       document.getElementById('translatedRisksOutput').textContent = translatedRisks;
+
+      document.getElementById('translateBlock').style.display = 'block';
+
     } catch (error) {
       console.error('Translation error:', error);
       alert('Error during translation. Please try again.');

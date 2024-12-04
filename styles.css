@@ -115,7 +115,7 @@ button {
 .divider {
   width: 1px;
   height: 50%; 
-  background-color: #999; 
+  background-color: #5D5D5D; 
   margin-right: 25px;
 }
 
@@ -129,4 +129,10 @@ button {
   cursor: pointer;
   text-align: center;
   transition: transform 0.2s ease-in-out; 
+}
+.dividerTranslate {
+  height: 0.5px; 
+  background-color: #5D5D5D; 
+  width: 100%; 
+  margin: 20px auto; 
 }
