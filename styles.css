@@ -67,8 +67,15 @@ button {
   text-align: center; 
 }
 
+.chooseFile {
+  font-size: 14px; 
+  color: #5D5D5D; 
+  outline: none;
+  text-decoration: underline;
+}
+
 .generatedContent{
-  font-size: 12px;
+  font-size: 10px;
   color: #5D5D5D;
   text-align: left;
   font-weight: 200;
