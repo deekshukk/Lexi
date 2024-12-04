@@ -51,29 +51,30 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Function to identify risks and return full sentences
-  function identifyRisks(text) {
-    const riskKeywords = [
-      'penalty', 'liability', 'termination', 'fees', 
-      'risk', 'compliance', 'breach', 'fine', 'responsibility'
-    ];
-    const sentences = text.match(/[^.!?]+[.!?]/g) || []; // Split text into sentences
-    const risks = [];
-
-    // Check each sentence for keywords
-    sentences.forEach(sentence => {
-      riskKeywords.forEach(keyword => {
-        if (sentence.toLowerCase().includes(keyword)) {
-          risks.push(sentence.trim());
-        } 
+    function identifyRisks(text) {
+      const riskKeywords = [
+        'penalty', 'liability', 'termination', 'fees', 
+        'risk', 'compliance', 'breach', 'fine', 'responsibility'
+      ];
+      const sentences = text.match(/[^.!?]+[.!?]/g) || []; // Split text into sentences
+      const risks = new Set(); // Use a Set to store unique sentences
+    
+      // Check each sentence for keywords
+      sentences.forEach(sentence => {
+        for (const keyword of riskKeywords) {
+          if (sentence.toLowerCase().includes(keyword)) {
+            risks.add(sentence.trim()); // Add the sentence to the Set
+            break; // Break the loop to avoid adding the same sentence multiple times
+          }
+        }
       });
-    });
-
-    if (risks.length === 0) {
-      return 'No risks identified in the document.';
-    }
-
-    return `Identified Risks:\n${risks.join('\n')}`;
-  } 
+    
+      if (risks.size === 0) {
+        return 'No risks identified in the document.';
+      }
+    
+      return `Identified Risks:\n${Array.from(risks).join('\n')}`;
+    }    
 
   document.getElementById('uploadBtn').addEventListener('click', function() {
     const fileInput = document.getElementById('pdfInput');
